@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main {
+    
+    public static List<String> movePrefixedItemsToEnd(String[] array, String prefix) {
+        // Convert the array to a list for easier manipulation
+        List<String> myList = new ArrayList<>();
+        for (String item : array) {
+            myList.add(item);
+        }
+
+        // Temporary list to store items that start with the prefix
+        List<String> prefixedItems = new ArrayList<>();
+
+        // Using an iterator to remove and collect items starting with the prefix
+        Iterator<String> iterator = myList.iterator();
+        while (iterator.hasNext()) {
+            String item = iterator.next();
+            if (item.startsWith(prefix)) {
+                prefixedItems.add(item);  // Collect prefixed items
+                iterator.remove();        // Remove them from the original list
+            }
+        }
+
+        // Add the prefixed items to the end of the list
+        myList.addAll(prefixedItems);
+
+        return myList;
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        String[] array = {"affi_value1", "value2", "affi_value3", "value4"};
+        String prefix = "affi";
+
+        // Call the function
+        List<String> result = movePrefixedItemsToEnd(array, prefix);
+
+        // Output the modified list
+        System.out.println(result);
+    }
+}
